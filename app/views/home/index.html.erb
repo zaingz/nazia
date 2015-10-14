@@ -1,0 +1,38 @@
+
+
+
+<div class="container">
+
+  <div class="row text-center jumbotron">
+    <h1><%= link_to @feed.title, @feed.url %></h1>
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for :url , :url => '/news', method: :post do |f| %>
+          <div class="form-group">
+            <div class="col-md-9">
+                <%= f.text_field  :url, class: "form-control block", :placeholder=> 'Feed link' %>
+            </div>
+          <%= f.submit "Get News", class: "btn btn-primary" %>
+          </div>
+      <%end%>
+      <input id="feed_url" type="text" class="form-control" placeholder="Feed Link" style="display:none">
+    </div>
+  </div>
+
+  <% @feed.entries.each do |e|%>
+    <div class="col-md-8 col-md-offset-2">
+      <h4><%= link_to e.title, e.url %></h4>
+      <p>Published:&nbsp;<span class="text-muted"><%= e.published%></span></p>
+      <p>Author:&nbsp;<span class="text-muted"><%= e.author%></span></p>
+      <p class="text-success"><%= e.summary.to_s%> </p>
+      <img src="<%= e.image%>" style="width: 100%">
+      <div class="well">
+        <%= e.content.to_s.html_safe%>
+      </div>
+
+      <br/>
+      <hr/>
+    </div>
+
+  <%end%>
+
+</div>

@@ -24,8 +24,12 @@
       <p>Published:&nbsp;<span class="text-muted"><%= e.published%></span></p>
       <p>Author:&nbsp;<span class="text-muted"><%= e.author%></span></p>
       <p class="text-success"><%= e.summary.to_s%> </p>
-      <img src="<%= e.image%>" style="width: 100%">
+      <h3>Html Safe Summary</h3>
       <div class="well">
+        <%= e.summary.to_s.html_safe%>
+      </div>
+      <img class="img img thumbnail" src="<%= e.image%>" style="width: 100%">
+      <div class="well-sm">
         <%= e.content.to_s.html_safe%>
       </div>
 

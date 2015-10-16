@@ -79,7 +79,12 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: Nazia_production
-  username: Nazia
-  password: <%= ENV['NAZIA_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  username: dfaoicrmryhnzf
+  password: K65PDlMOVuVoR7gWdNAIPTHwws
+  hostname: ec2-54-227-249-165.compute-1.amazonaws.com
+  pool: 5
+  port: 5432
+  url: postgres://dfaoicrmryhnzf:K65PDlMOVuVoR7gWdNAIPTHwws@ec2-54-227-249-165.compute-1.amazonaws.com:5432/d9kohodshe2reo
+  database: d9kohodshe2reo

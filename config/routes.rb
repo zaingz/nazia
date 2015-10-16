@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'news' => 'home#index'
   post 'news' => 'home#index_2'
 
-  get 'news/general' => 'home#general'
+  get 'news/top' => 'home#general'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

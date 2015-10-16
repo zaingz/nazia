@@ -11,6 +11,8 @@ puts str
   #anchor end /<\/a>/
   #img src /<img[^>]+src="([^">]+)"/
   #further getting image src /(http|https)([^"]+)/
+
+  #get complete img tag /(<img[^>]*\/>)|(<img[^>]*\>(\s)?<\/img>)/
 -->
 <div class="container-fluid">
   <div class="jumbotron"><h1 class="text-center">All the latest news</h1></div>
@@ -20,14 +22,16 @@ puts str
     <div class="col-md-6"><h2><%= feed.title%></h2></div>
   </div>
       <div class="row">
-      <% feed.entries.each do |news|%>
+      <% feed.entries[0...3].each do |news|%>
 
         <div class="col-md-4">
           <div class="thumbnail">
-            <img src="<%=news.image%>" alt="...">
+            <%= %>
+            <img src="<%=news.image.gsub(/-150x150/, '')|| "http://www.abgal.com.au/images/above_ground_liner/Dark%20Blue%20.jpg" %>" alt="...">
             <div class="caption">
               <h3><%= link_to news.title, news.url %></h3>
-              <div><%= news.summary.to_s%> </div>
+              <% flter = news.summary.to_s.gsub(/(<img[^>]*\/>)|(<img[^>]*\>(\s)?<\/img>)/ , '')%>
+              <div><%= flter.html_safe%> </div>
               <p style="margin-top: 10px;margin-bottom: 10px;"><a  href="#" class="btn btn-success pull-right" role="button">Share</a></p>
             </div>
           </div>

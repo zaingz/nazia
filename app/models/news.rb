@@ -4,7 +4,6 @@ class News < ActiveRecord::Base
 
 
 
-
   def self.dump_news
     url_forbes = "http://www.forbes.com/most-popular/feed/"
     url_dawn = "http://feeds.feedburner.com/dawn-news?fmt=xml"
@@ -28,7 +27,7 @@ class News < ActiveRecord::Base
         content = news.summary.to_s.gsub(/(<img[^>]*\/>)|(<img[^>]*\>(\s)?<\/img>)/ , '')
         image = news.image.gsub(/-150x150/, '')|| "http://www.abgal.com.au/images/above_ground_liner/Dark%20Blue%20.jpg"
         url = news.url
-        News.create!(title: title, author: author, published_at: published_at,
+        News.find_or_create_by(title: title, author: author, published_at: published_at,
                     content: content, source: source, image: image, url:url
         )
       end
